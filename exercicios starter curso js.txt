@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, 
+    initial-scale=1">
+    <title>Curso JS</title>
+    
+</head>
+<body>
+     oi
+
+     
+   
+    <script>
+      //EXERCICIOS modulo 1 introdção a java script 
+      //1 exercicios
+      var endereco = {  
+            rua: "Rua dos pinheiros",  
+            numero: 1293,  
+            bairro: "Centro",  
+            cidade: "São Paulo",  
+            uf: "SP" 
+        };       
+    document.body.innerHTML ="<h1>O usuario mora em "+ endereco.cidade +
+        " / "+ endereco.uf +" .......</h1>";
+  
+    //3 exercicios
+    var skills = [ "ReactJS", "React Native"];
+    function temHabilidade(skills) {
+    
+    return (skills.indexOf("Javascript") !== -1)? true:false ;
+    }
+     console.log(temHabilidade(skills)); 
+     // true ou false
+
+    //exercicio 4 
+
+    function experiencia(anos) {  
+        
+        if (anos>=0 && anos<=1){
+            return 'Iniciante';
+        }else if(1<anos && anos <=3){
+            return 'Intermediario';
+        }else if( 3<anos && anos<=6){
+            return 'Avançado';        
+        }else if(anos>=7){
+            return 'Jedi Master';
+        }else {
+            return 'Valor Invalido';
+        }
+        
+    } 
+    var anosEstudo = 7; 
+    var resultado = experiencia(anosEstudo);
+    console.log(resultado); 
+    // De 0-1 ano: Iniciante
+     // De 1-3 anos: Intermediário 
+     // De 3-6 anos: Avançado 
+     // De 7 acima: Jedi Master
+
+
+     // Exercicio 5
+
+     var usuarios = [  
+         {    
+         nome: "Diego",    
+         habilidades: ["Javascript", "ReactJS", "Redux"]  
+        },
+        {    
+         nome: "Gabriel",    
+         habilidades: ["VueJS", "Ruby on Rails", "Elixir"]  
+        } 
+    ];
+    function frase(usuarios){
+        for(const usuario of usuarios){
+            console.log( 'O '+usuario.nome+' possui as Habilidades: '
+                    +usuario.habilidades.join(', '))
+        }
+    }   
+    frase(usuarios);
+    //Escreva uma função que produza o seguinte 
+    //resultado:
+    //O Diego possui as habilidades: Javascript, 
+    //ReactJS, Redux O Gabriel possui as habilidades: 
+    //VueJS, Ruby on Rails, Elixir
+     
+    </script>
+</body>
+</html>

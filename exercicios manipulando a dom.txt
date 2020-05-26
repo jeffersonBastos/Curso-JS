@@ -1,0 +1,142 @@
+MANIPULANDO A DOM
+
+EXERCICIO 1
+
+<html >
+<head>    
+    <meta charset="UTF-8">
+    <title>Curso JS</title>
+</head>
+<body>
+    <div id="app">
+        <button id="criar" > criar quadrado </button>
+
+      
+
+        </div>          
+    
+
+    <script>
+        var btnElement = document.querySelector("#criar")
+        btnElement.style.backgroundColor = '#f00';
+        
+        btnElement.onclick = function(){
+            var boxElement = document.createElement('div');
+            boxElement.setAttribute('class', 'box');
+            
+            boxElement.style.width = 100;
+            boxElement.style.height = 100;
+            boxElement.style.backgroundColor = 'black';
+
+            var containerApp = document.querySelector("#app");
+            containerApp.appendChild(boxElement);
+        }
+           
+    </script>
+</body>
+</html>
+
+
+
+
+
+exercicio 2 
+
+ <script>
+        var btnElement = document.querySelector("#criar")
+        btnElement.style.backgroundColor = '#f00';
+        
+        btnElement.onclick = function(){
+            var boxElement = document.createElement('div');
+            boxElement.setAttribute('class', 'box');
+            
+            boxElement.style.width = 100;
+            boxElement.style.height = 100;
+            boxElement.style.backgroundColor = 'black';
+            boxElement.onmouseover = function(){
+                boxElement.style.backgroundColor = getRandomColor();
+            }
+            var containerApp = document.querySelector("#app");
+            
+            containerApp.appendChild(boxElement);
+        }
+           
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        var newColor = getRandomColor(); // #E943F0
+    
+    </script>
+
+
+exercicio 3 
+
+
+var names = ["Diego", "Gabriel", "Lucas"];
+        var ulElement = document.createElement('ul');
+        ulElement.setAttribute('class', 'lista');
+        function insertNames(){
+            for(const name of names){
+                var liElement = document.createElement('li');
+                var TextElement = document.createTextNode(name);
+                liElement.appendChild(TextElement);
+                
+                ulElement.appendChild(liElement);
+
+            }
+        }        
+        insertNames();
+        var containerBody = document.querySelector("body");
+        containerBody.appendChild(ulElement);
+
+
+exercicio 4 
+
+<body>
+    <div id="app">
+        <button id="criar" > criar quadrado </button>
+        
+        <input> </input>
+
+        <button id="adicionar"> adicionar </button>
+    </div>          
+    
+    <script>
+        var names = ["Diego", "Gabriel", "Lucas"];
+        var ulElement = document.createElement('ul');
+        ulElement.setAttribute('class', 'lista');
+        function insertNames(){
+
+            for(const name of names){
+                var liElement = document.createElement('li');
+                var TextElement = document.createTextNode(name);
+                liElement.appendChild(TextElement);
+                
+                ulElement.appendChild(liElement);
+
+            }
+        }  
+        var btnAdicionar = document.querySelector("#adicionar");
+        var inputElement = document.querySelector("input");
+        
+        btnAdicionar.onclick = function(){
+            var text = inputElement.value;
+            names.push(text);
+            var liElement = document.createElement('li');
+            var TextElement = document.createTextNode(text);
+            liElement.appendChild(TextElement);
+                
+            ulElement.appendChild(liElement); 
+        }
+        
+
+        insertNames();
+        var containerBody = document.querySelector("body");
+        containerBody.appendChild(ulElement);
+        
+        

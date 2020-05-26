@@ -1,0 +1,167 @@
+Exercicio 1 
+
+var appElement = document.querySelector('#app');
+
+var buttonElement = document.createElement('button');
+var textButton = document.createTextNode('checar');
+
+
+buttonElement.appendChild(textButton);
+
+
+var inputElement = document.createElement('input');
+var textInput = document.createTextNode('idade');
+
+appElement.appendChild(inputElement);
+appElement.appendChild(buttonElement);
+
+
+function getValueInput(){
+ var idade = inputElement.value;
+ inputElement.value = '';
+ return idade;
+};
+
+function checaIdade(idade) {
+    return new Promise(function(resolve, reject){
+       setTimeout(() => {
+        if(idade > 18){
+            resolve('maior 18');
+        }else{
+            reject('');
+        } 
+       }, 2000);
+        
+    });
+    
+    // Retornar uma promise
+   }
+   buttonElement.onclick = function (){
+    checaIdade( getValueInput() )
+    .then(function() {
+    console.log("Maior que 18");
+    })
+    .catch(function() {
+    console.log("Menor que 18");
+    });
+}
+   
+Exercicio 2 
+
+
+var appElement = document.querySelector('#app');
+
+var buttonElement = document.createElement('button');
+var textButton = document.createTextNode('Adicionar');
+
+buttonElement.appendChild(textButton);
+
+var inputElement = document.createElement('input');
+
+inputElement.setAttribute("type", "text");
+inputElement.setAttribute("name", "user");
+inputElement.placeholder = "Nome do usuario";
+
+var listElement = document.createElement('ul');
+
+appElement.appendChild(inputElement);
+appElement.appendChild(buttonElement);
+appElement.appendChild(listElement);
+
+
+
+function getValueInput(){
+ var usuario = inputElement.value;
+ inputElement.value = '';
+ return 'https://api.github.com/users/'+usuario+'/repos'; 
+
+};
+
+   
+
+   buttonElement.onclick = function (){
+    
+    axios.get(getValueInput())
+        .then(function(response){
+            listElement.innerHTML = '';
+            for(repo of response.data){
+                var repoElement = document.createElement('li');
+                var nameRepo = document.createTextNode(repo.name);
+                
+                repoElement.appendChild(nameRepo);
+                listElement.appendChild(repoElement);
+            }
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+        
+    }
+
+exercicio 3 
+
+
+var appElement = document.querySelector('#app');
+
+var buttonElement = document.createElement('button');
+var textButton = document.createTextNode('Adicionar');
+
+buttonElement.appendChild(textButton);
+
+var inputElement = document.createElement('input');
+
+inputElement.setAttribute("type", "text");
+inputElement.setAttribute("name", "user");
+inputElement.placeholder = "Nome do usuario";
+
+var listElement = document.createElement('ul');
+
+appElement.appendChild(inputElement);
+appElement.appendChild(buttonElement);
+appElement.appendChild(listElement);
+
+
+
+function getValueInput(){
+ var usuario = inputElement.value;
+ inputElement.value = '';
+ return 'https://api.github.com/users/'+usuario+'/repos'; 
+
+};
+
+   
+
+   buttonElement.onclick = function (){
+    listElement.innerHTML = '';
+  
+    var carregandoElement = document.createElement('li');
+    var carregandoText = document.createTextNode("Carregando Repositorios");
+            
+    carregandoElement.appendChild(carregandoText);
+    listElement.appendChild(carregandoElement);
+    axios.get(getValueInput())
+        .then(function(response){
+            listElement.innerHTML = '';
+            for(repo of response.data){
+                var repoElement = document.createElement('li');
+                var nameRepo = document.createTextNode(repo.name);
+                
+                repoElement.appendChild(nameRepo);
+                listElement.appendChild(repoElement);
+            }
+        })
+        .catch(function(error){
+            
+            listElement.innerHTML = '';
+            var errorElement = document.createElement('li');
+            var errorText = document.createTextNode("Esse usuario é inexistente");
+            
+            errorElement.appendChild(errorText);
+            listElement.appendChild(errorElement);
+            alert("erro ao procurar o usuario");
+            
+        });
+        
+    }
+
+
